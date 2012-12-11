@@ -2,48 +2,39 @@ require 'spec_helper'
 
 describe "StaticPages" do
 
+  subject { page }
+
   describe "Home page" do
+    before { visit root_path } 
 
-    it "should have the content 'blog3'" do
-      visit '/static_pages/home'
-      page.should have_content('blog3')
-    end
-
-    it "should have the title 'Home'" do
-      visit '/static_pages/home'
-      page.should have_selector('title',
-                        :text => "Ruby on Rails Tutorial blog3 | Home")
-    end
+    it { should have_content('blog3') }
+    it { page.should have_selector 'title',
+                        text: "Ruby on Rails Tutorial blog3 | Home"}
+    it { should have_selector('title', text: full_title('')) }
 
   end
 
   describe "Help page" do
+    before { visit help_path }
 
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      page.should have_content('Help')
-    end
-
-    it "should have the title 'Help'" do
-      visit '/static_pages/help'
-      page.should have_selector('title',
-                        :text => "Ruby on Rails Tutorial blog3 | Help")
-    end
+    it { should have_content('Help') }
+    it { should have_selector('title', text: full_title('Help')) }
 
   end
 
   describe "About page" do
+    before { visit about_path }
 
-    it "should have the content 'About Us'" do
-      visit '/static_pages/about'
-      page.should have_content('About Us')
-    end
+    it { should have_content('Sobre') }
+    it { should have_selector('title', full_title('Help')) }
 
-    it "should have the title 'About Us'" do
-      visit '/static_pages/about'
-      page.should have_selector('title',
-                    :text => "Ruby on Rails Tutorial blog3 | About Us")
-    end
+  end
+
+  describe "Contact page" do
+    before { visit contact_path }
+
+    it { should have_content('Contact') }
+    it { should have_selector('title', text: full_title('Contact')) }
 
   end
 
