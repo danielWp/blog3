@@ -26,7 +26,7 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should be_valid }
-
+  it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
 
   describe "Quando a senha nao estiver presente" do
